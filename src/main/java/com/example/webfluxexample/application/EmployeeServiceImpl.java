@@ -19,10 +19,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     );
 
     @Override
-    public Mono<Employee> save(Employee employee) {
+    public Employee save(Employee employee) {
         employee.setId(repository.size() + 1L);
         this.repository.add(employee);
-        return Mono.just(employee).delayElement(Duration.ofSeconds(1));
+        return employee;
     }
 
     @Override
@@ -33,6 +33,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Mono<Employee> findById(Long id) {
         return Mono.just(getEmployeeById(id)).delayElement(Duration.ofSeconds(1));
+    }
+
+    @Override
+    public Employee findFirst() {
+        return repository.get(0);
     }
 
     private Employee getEmployeeById(Long id) {

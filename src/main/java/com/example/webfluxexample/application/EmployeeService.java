@@ -5,9 +5,11 @@ import reactor.core.publisher.Mono;
 
 public interface EmployeeService {
 
-    Mono<Employee> save(Employee employee);
+    Employee save(Employee employee);
 
     Flux<Employee> findAll();
 
     Mono<Employee> findById(Long id);
+
+    Employee findFirst();
 }
